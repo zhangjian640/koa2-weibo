@@ -15,12 +15,12 @@ const User = seq.define('user', {
     type: Sequelize.STRING,
     comment: '昵称'
   }
-});
+})
 
 const Blog = seq.define('blog', {
   title: {
     type: Sequelize.STRING,
-    allowNull: false 
+    allowNull: false
   },
   content: {
     type: Sequelize.TEXT,

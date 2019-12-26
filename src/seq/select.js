@@ -1,6 +1,6 @@
 const { User, Blog } = require('./model')
 // 创建
-!(async function() {
+!(async function () {
   // 查询一个
   const zj = await User.findOne({
     where: {
@@ -25,7 +25,7 @@ const { User, Blog } = require('./model')
       ['id', 'desc']
     ]
   })
-  console.log('zjBlogs: ', zjBlogs.map( blog => blog.dataValues))
+  console.log('zjBlogs: ', zjBlogs.map(blog => blog.dataValues))
 
   // 分页
   const blogPageList = await Blog.findAll({
@@ -36,7 +36,7 @@ const { User, Blog } = require('./model')
     offset: 2
   })
 
-  console.log('blogPageList: ', blogPageList.map( blog => blog.dataValues))
+  console.log('blogPageList: ', blogPageList.map(blog => blog.dataValues))
 
   // 查询总数
   const blogListAndCount = await Blog.findAndCountAll({
@@ -45,14 +45,14 @@ const { User, Blog } = require('./model')
     ],
     limit: 2,
     offset: 2
-  }) 
+  })
   console.log('blogListAndCount：',
-   blogListAndCount.count, // 总数
-   blogListAndCount.rows.map(blog => blog.dataValues) 
-   )
+    blogListAndCount.count, // 总数
+    blogListAndCount.rows.map(blog => blog.dataValues)
+  )
 
-   // 连表查询
-   const blogListWithUser = await Blog.findAndCountAll({
+  // 连表查询
+  const blogListWithUser = await Blog.findAndCountAll({
     order: [
       ['id', 'desc']
     ],
@@ -65,14 +65,14 @@ const { User, Blog } = require('./model')
         }
       }
     ]
-  })  
-  console.log('blogListWithUser: ',
-  blogListWithUser.count,
-  blogListWithUser.rows.map(blog => {
-    const blogVal = blog.dataValues
-    blogVal.user = blogVal.user.dataValues
-    return blogVal
   })
+  console.log('blogListWithUser: ',
+    blogListWithUser.count,
+    blogListWithUser.rows.map(blog => {
+      const blogVal = blog.dataValues
+      blogVal.user = blogVal.user.dataValues
+      return blogVal
+    })
   )
 
   // 连表查询2
@@ -83,13 +83,13 @@ const { User, Blog } = require('./model')
         model: Blog
       }
     ]
-  }) 
-  console.log('userListWithBlog: ',
-  userListWithBlog.count,
-  userListWithBlog.rows.map(user => {
-    const userVal = user.dataValues
-    userVal.blogs = userVal.blogs.map(blog => blog.dataValues)
-    return userVal
   })
+  console.log('userListWithBlog: ',
+    userListWithBlog.count,
+    userListWithBlog.rows.map(user => {
+      const userVal = user.dataValues
+      userVal.blogs = userVal.blogs.map(blog => blog.dataValues)
+      return userVal
+    })
   )
 })()

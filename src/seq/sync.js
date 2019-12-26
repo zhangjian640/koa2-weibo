@@ -1,6 +1,9 @@
+/**
+ * @description sequelize 同步数据库
+ */
 const seq = require('./seq')
 
-require('./model')
+// require('./model')
 
 seq.authenticate().then(() => {
   console.log('ok')
