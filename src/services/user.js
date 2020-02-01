@@ -9,7 +9,6 @@ const { formatUser } = require('./_format')
  * 获取用户信息
  * @param userName 用户名
  * @param password 密码
- * @returns {Promise<void>}
  */
 async function getUserInfo(userName, password) {
   const whereOpt = {
@@ -28,12 +27,31 @@ async function getUserInfo(userName, password) {
     return result
   }
 
-  // 格式化
-  const formatResult = formatUser(result.dataValues)
+  // 格式化后返回
+  return formatUser(result.dataValues)
+}
 
-  return formatResult
+/**
+ * 创建用户
+ * @param userName 用户名
+ * @param password 密码
+ * @param gender 性别
+ * @param nickName 昵称
+ */
+async function createUser({userName, password, gender = 3, nickName}) {
+  const result = await User.create({
+    userName,
+    password,
+    nickName: nickName ? nickName : userName,
+    gender
+  })
+  if (result.dataValues == null) {
+    return result
+  }
+  return result.dataValues
 }
 
 module.exports = {
-  getUserInfo
+  getUserInfo,
+  createUser
 }
