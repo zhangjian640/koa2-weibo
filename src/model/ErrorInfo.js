@@ -22,9 +22,15 @@ const registerUserNameNotExistInfo = {
   message: '用户名未已存在'
 }
 
+const jsonSchemaFailInfo = {
+  errno: 10009,
+  message: '数据格式校验失败'
+}
+
 module.exports = {
   registerUserNameExistInfo,
   registerUserNameNotExistInfo,
   registerSuccess,
-  registerFailInfo
+  registerFailInfo,
+  jsonSchemaFailInfo
 }

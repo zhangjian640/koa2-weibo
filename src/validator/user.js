@@ -1,3 +1,7 @@
+/**
+ * @description 规则校验
+ */
+
 const validate = require('./_validate')
 
 const SCHEMA = {
@@ -17,7 +21,7 @@ const SCHEMA = {
     newPassword: {
       type: 'string',
       maxLength: 255,
-      minLength: 3 
+      minLength: 3
     },
     picture: {
       type: 'string',
@@ -26,7 +30,7 @@ const SCHEMA = {
     city: {
       type: 'string',
       maxLength: 255,
-      minLength: 2 
+      minLength: 2
     },
     gender: {
       type: 'number',
@@ -36,6 +40,10 @@ const SCHEMA = {
   }
 }
 
+/**
+ * 校验用户数据格式
+ * @param {object} data 用户数据
+ */
 function userValidate(data = {}) {
   return validate(SCHEMA, data)
 }
