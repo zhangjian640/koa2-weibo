@@ -22,6 +22,11 @@ const loginFailInfo = {
   message: '登录失败，用户名或密码错误'
 }
 
+const loginCheckFailInfo = {
+  errno: 10005,
+  message: '您尚未登录'
+}
+
 const jsonSchemaFailInfo = {
   errno: 10009,
   message: '数据格式校验失败'
@@ -32,5 +37,6 @@ module.exports = {
   registerUserNameNotExistInfo,
   loginFailInfo,
   registerFailInfo,
+  loginCheckFailInfo,
   jsonSchemaFailInfo
 }
