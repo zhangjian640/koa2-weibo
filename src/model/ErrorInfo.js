@@ -27,6 +27,11 @@ const loginCheckFailInfo = {
   message: '您尚未登录'
 }
 
+const uploadFileSizeFailInfo = {
+  errno: 10007,
+  message: '上传文件尺寸过大'
+}
+
 const jsonSchemaFailInfo = {
   errno: 10009,
   message: '数据格式校验失败'
@@ -42,6 +47,7 @@ module.exports = {
   registerUserNameNotExistInfo,
   loginFailInfo,
   registerFailInfo,
+  uploadFileSizeFailInfo,
   loginCheckFailInfo,
   jsonSchemaFailInfo
 }
