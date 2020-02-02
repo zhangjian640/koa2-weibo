@@ -32,6 +32,11 @@ const jsonSchemaFailInfo = {
   message: '数据格式校验失败'
 }
 
+const deleteUserFailInfo = {
+  errno: 10010,
+  message: '删除用户失败'
+}
+
 module.exports = {
   registerUserNameExistInfo,
   registerUserNameNotExistInfo,

@@ -1,9 +1,9 @@
 /**
  * @description user controller
  */
-const { getUserInfo, createUser } = require('../services/user')
+const { getUserInfo, createUser, deleteUser } = require('../services/user')
 const { SuccessModel, ErrorModel } = require('../model/ResponseModel')
-const { registerUserNameNotExistInfo, registerUserNameExistInfo, registerFailInfo, loginFailInfo } = require('../model/ErrorInfo')
+const { registerUserNameNotExistInfo, registerUserNameExistInfo, registerFailInfo, loginFailInfo, deleteUserFailInfo } = require('../model/ErrorInfo')
 const doCrypto = require('../utils/crypto')
 /**
  * 用户名是否存在
@@ -65,8 +65,23 @@ async function login(ctx, userName, password) {
   return new SuccessModel()
 }
 
+/**
+ * 删除当前用户
+ * @param userName
+ * @returns {Promise<void>}
+ */
+async function deleteCurrentUser(userName) {
+  const result = await deleteUser(userName)
+  if (result) {
+    return new SuccessModel()
+  } else {
+    return new ErrorModel(deleteUserFailInfo)
+  }
+}
+
 module.exports = {
   isExist,
   register,
-  login
+  login,
+  deleteCurrentUser
 }
