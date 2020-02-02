@@ -12,14 +12,14 @@ const registerFailInfo = {
   message: '注册失败,请重试'
 }
 
-const registerSuccess = {
-  errno: 10004,
-  message: '用户名已存在'
-}
-
 const registerUserNameNotExistInfo = {
   errno: 10003,
   message: '用户名未已存在'
+}
+
+const loginFailInfo = {
+  errno: 10004,
+  message: '登录失败，用户名或密码错误'
 }
 
 const jsonSchemaFailInfo = {
@@ -30,7 +30,7 @@ const jsonSchemaFailInfo = {
 module.exports = {
   registerUserNameExistInfo,
   registerUserNameNotExistInfo,
-  registerSuccess,
+  loginFailInfo,
   registerFailInfo,
   jsonSchemaFailInfo
 }
