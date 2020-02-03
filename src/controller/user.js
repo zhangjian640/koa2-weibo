@@ -3,7 +3,7 @@
  */
 const { getUserInfo, createUser, deleteUser, updateUser } = require('../services/user')
 const { SuccessModel, ErrorModel } = require('../model/ResponseModel')
-const { registerUserNameNotExistInfo, registerUserNameExistInfo, registerFailInfo, loginFailInfo, deleteUserFailInfo, changeInfoFailInfo } = require('../model/ErrorInfo')
+const { registerUserNameNotExistInfo, registerUserNameExistInfo, registerFailInfo, loginFailInfo, deleteUserFailInfo, changeInfoFailInfo, changePasswordFailInfo } = require('../model/ErrorInfo')
 const doCrypto = require('../utils/crypto')
 /**
  * 用户名是否存在
@@ -86,7 +86,7 @@ async function deleteCurrentUser(userName) {
  * @param city 城市
  * @param picture 头像
  */
-async function changeInfo(ctx, {nickName, city, picture}) {
+async function  changeInfo(ctx, {nickName, city, picture}) {
   const { userName } = ctx.session.userInfo
   if (!nickName) {
     nickName = userName
@@ -110,10 +110,33 @@ async function changeInfo(ctx, {nickName, city, picture}) {
   return new ErrorModel(changeInfoFailInfo)
 }
 
+/**
+ * 修改密码
+ * @param userName 用户名
+ * @param password 密码
+ * @param newPassword 新密码
+ */
+async function changePassword(userName, password, newPassword) {
+  const result = await updateUser(
+    {
+      newPassword: doCrypto(newPassword)
+    },
+    {
+      userName,
+      password: doCrypto(password)
+    }
+  )
+  if (result) {
+    return new SuccessModel()
+  }
+  return new ErrorModel(changePasswordFailInfo)
+}
+
 module.exports = {
   isExist,
   register,
   login,
   deleteCurrentUser,
-  changeInfo
+  changeInfo,
+  changePassword
 }

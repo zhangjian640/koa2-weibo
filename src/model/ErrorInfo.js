@@ -27,6 +27,11 @@ const loginCheckFailInfo = {
   message: '您尚未登录'
 }
 
+const changePasswordFailInfo = {
+  errno: 10006,
+  message: '修改密码失败，请重试'
+}
+
 const uploadFileSizeFailInfo = {
   errno: 10007,
   message: '上传文件尺寸过大'
@@ -52,6 +57,7 @@ module.exports = {
   registerUserNameNotExistInfo,
   loginFailInfo,
   registerFailInfo,
+  changePasswordFailInfo,
   uploadFileSizeFailInfo,
   loginCheckFailInfo,
   changeInfoFailInfo,
