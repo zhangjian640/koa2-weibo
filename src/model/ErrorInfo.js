@@ -32,6 +32,11 @@ const uploadFileSizeFailInfo = {
   message: '上传文件尺寸过大'
 }
 
+const changeInfoFailInfo = {
+  errno: 10008,
+  message: '修改基本信息失败'
+}
+
 const jsonSchemaFailInfo = {
   errno: 10009,
   message: '数据格式校验失败'
@@ -49,5 +54,7 @@ module.exports = {
   registerFailInfo,
   uploadFileSizeFailInfo,
   loginCheckFailInfo,
-  jsonSchemaFailInfo
+  changeInfoFailInfo,
+  jsonSchemaFailInfo,
+  deleteUserFailInfo
 }
