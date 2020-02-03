@@ -52,6 +52,11 @@ const deleteUserFailInfo = {
   message: '删除用户失败'
 }
 
+const createBlogFailInfo = {
+  errno: 10011,
+  message: '创建微博失败，请重试'
+}
+
 module.exports = {
   registerUserNameExistInfo,
   registerUserNameNotExistInfo,
@@ -62,5 +67,6 @@ module.exports = {
   loginCheckFailInfo,
   changeInfoFailInfo,
   jsonSchemaFailInfo,
-  deleteUserFailInfo
+  deleteUserFailInfo,
+  createBlogFailInfo
 }
