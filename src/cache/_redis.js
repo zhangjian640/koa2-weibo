@@ -4,7 +4,7 @@
 
 const redis = require('redis')
 
-const { REDIS_CONF } = require('../../config/db')
+const { REDIS_CONF } = require('../config/db')
 
 // 创建连接
 const redisClient = redis.createClient(REDIS_CONF.port, REDIS_CONF.host)
@@ -29,17 +29,17 @@ function set(key, val, timeout = 60 * 60) {
 
 /**
  * redis get
- * @param {string} key 
+ * @param {string} key
  */
 function get(key) {
   return new Promise((resolve, reject) => {
-    redisClient.get(key, (err) => {
+    redisClient.get(key, (err, val) => {
       if (err) {
         reject(err)
         return
       }
-      if (!val) {
-        reject(null)
+      if (val == null) {
+        resolve(null)
         return
       }
       try {
