@@ -3,11 +3,11 @@
 */
 
 const seq = require('../seq')
-const { STRING, INTERGER, TEXT } = require('../types')
+const { STRING, INTEGER, TEXT } = require('../types')
 
 const Blog = seq.define('blog', {
   userId: {
-    type: INTERGER,
+    type: INTEGER,
     allowNull: false,
     comment: '用户 ID'
   },
