@@ -57,6 +57,16 @@ const createBlogFailInfo = {
   message: '创建微博失败，请重试'
 }
 
+const addFollowerFailInfo = {
+  errno: 11001,
+  message: '添加关注失败'
+}
+
+const deleteFollowerFailInfo = {
+  errno: 11002,
+  message: '删除关注失败'
+}
+
 module.exports = {
   registerUserNameExistInfo,
   registerUserNameNotExistInfo,
@@ -68,5 +78,7 @@ module.exports = {
   changeInfoFailInfo,
   jsonSchemaFailInfo,
   deleteUserFailInfo,
-  createBlogFailInfo
+  createBlogFailInfo,
+  addFollowerFailInfo,
+  deleteFollowerFailInfo
 }
