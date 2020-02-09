@@ -3,7 +3,7 @@
  */
 
 const serer = require('../server')
-const { COOKIE } = require('../testUserInfo')
+const { Z_COOKIE } = require('../testUserInfo')
 
 // 存储blog id
 let BLOG_ID = ''
@@ -15,7 +15,7 @@ describe('微博', () => {
 
     const res = await serer.post('/api/blog/create')
       .send({content, image})
-      .set('cookie', COOKIE)
+      .set('cookie', Z_COOKIE)
 
     expect(res.body.errno).toBe(0)
     expect(res.body.data.content).toBe(content)
