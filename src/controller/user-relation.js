@@ -24,7 +24,6 @@ async function getFans(userId) {
  * @param userId
  */
 async function getFollowers(userId) {
-  debugger
   const { count, userList } = await getFollowersByUser(userId)
   return new SuccessModel({
     count,

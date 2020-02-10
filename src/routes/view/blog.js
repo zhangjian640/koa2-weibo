@@ -9,10 +9,45 @@ const { getProfileBlogList } = require('../../controller/blog-profile')
 const { getSquareBlogList } = require('../../controller/blog-square')
 const { getFans, getFollowers } = require('../../controller/user-relation')
 const { isExist } = require('../../controller/user')
+const { getHomeBlogList } = require('../../controller/blog-home')
 
 // 首页
 router.get('/', loginRedirect, async (ctx, next) => {
-  await ctx.render('index')
+  const userInfo = ctx.session.userInfo
+  const { id: userId } = userInfo
+
+  // 获取粉丝
+  const fansResult = await getFans(userId)
+  const { count: fansCount, fansList } = fansResult.data
+
+  // 获取关注人列表
+  const followersResult = await getFollowers(userId)
+  const { count: followersCount, followersList } = followersResult.data
+
+  // 获取第一页微博
+  const result = await getHomeBlogList(userId)
+  const { isEmpty, blogList, pageSize, pageIndex, count } = result.data
+
+  await ctx.render('index', {
+    userData: {
+      userInfo,
+      fansData: {
+        count: fansCount,
+        list: fansList
+      },
+      followersData: {
+        count: followersCount,
+        list: followersList
+      }
+    },
+    blogData: {
+      isEmpty,
+      blogList,
+      pageIndex,
+      pageSize,
+      count
+    }
+  })
 })
 
 router.get('/profile', loginRedirect, async (ctx, next) => {
