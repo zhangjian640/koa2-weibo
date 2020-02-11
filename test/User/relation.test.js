@@ -50,6 +50,18 @@ describe('关注和取消关注', () => {
     expect(hasUserName).toBe(true)
   })
 
+  test('获取张三的 at 列表， 应该有李四', async () => {
+    const res = await server
+      .get('/api/user/getAtList')
+      .set('cookie', Z_COOKIE)
+
+    const atList = res.body
+    const hasUserName = atList.some(item => {
+      return item.indexOf(`- ${L_USER_Name}`) > 0
+    })
+    expect(hasUserName).toBe(true)
+  })
+
   // 取消关注
   test('张三取消关注李四，应该成功', async () => {
     const res = await server
