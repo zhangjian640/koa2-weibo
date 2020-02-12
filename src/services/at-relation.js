@@ -3,6 +3,9 @@
  */
 
 const { AtRelation } = require('../db/model/index')
+const { Blog } = require('../db/model/index')
+const { User } = require('../db/model/index')
+const { formatUser, formatBlog } = require('./_format')
 
 /**
  * 创建微博 @ 用户的关系
@@ -34,7 +37,49 @@ async function getAtRelationCount(userId) {
   return result.count
 }
 
+/**
+ * 获取@用户的微博列表
+ * @param userId
+ * @param pageIndex
+ * @param pageSize
+ */
+async function getAtUserBlogList({ userId, pageIndex, pageSize = 10 }) {
+  const result = await Blog.findAndCountAll({
+    limit: pageSize,
+    offset: pageSize * pageIndex,
+    order: [
+      ['id', 'desc']
+    ],
+    include: [
+      // @ 关系
+      {
+        model: AtRelation,
+        attributes: ['userId', 'blogId'],
+        where: { userId }
+      },
+      // User
+      {
+        model: User,
+        attributes: ['userName', 'nickName', 'picture']
+      }
+    ]
+  })
+
+  let blogList = result.rows.map(row => row.dataValues)
+  blogList = formatBlog(blogList)
+  blogList = blogList.map(blogItem => {
+    blogItem.user = formatUser(blogItem.user)
+    return blogItem
+  })
+
+  return {
+    count: result.count,
+    blogList
+  }
+}
+
 module.exports = {
   createAtRelation,
-  getAtRelationCount
+  getAtRelationCount,
+  getAtUserBlogList
 }
