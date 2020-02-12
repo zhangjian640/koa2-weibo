@@ -6,8 +6,8 @@
 module.exports = {
   Z_ID: 2,
   Z_USER_NAME: 'zhangsan',
-  Z_COOKIE: 'weibo.sid=wfRgkUrVbiBmWxE57zfgbJziDHvp1gBK; weibo.sid.sig=W6PrNe6SN4Co2il2tPn2VB8cFEo',
+  Z_COOKIE: 'weibo.sid=Lx8kwiMHtNF9LlGgBnhUbKxE6w2fVZXV; weibo.sid.sig=5G47x_IrcLvXLucWQRIFHTVydQU',
   L_ID: 1,
   L_USER_Name: 'lisi',
-  L_COOKIE: 'weibo.sid=8fK1cJ2YwuiqUOZtxvuhw-pYGeGa__qD; weibo.sid.sig=UjXpcVcGfY9iFRQ6gEhN_jjogZ0'
+  L_COOKIE: 'weibo.sid=Xa1igHJXXz2Xxdo6gYO-wAkOO5pC_wx9; weibo.sid.sig=H3iLu86JJZps4EQqA_fOZCFaYUc'
 }
